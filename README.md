@@ -23,7 +23,7 @@ user stories:
 
 ### User Story 1
 **As a** Greggs fanatic<br/>
-**I want to** be able to get the latest menu of products rather than the same fixed products<br/>
+**I want to** be able to get the latest menu of products rather than the random static products it returns now<br/>
 **So that** I get the most recently available products.
 
 **Acceptance Criteria**<br/>
