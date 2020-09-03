@@ -5,7 +5,7 @@ Hello and welcome to the Greggs Products repository, thanks for finding it!
 The solution may require you to install the latest versions of .net, specifically netcoreapp3.1.
 
 ## The Solution
-So at the moment the api is currently returning a fixed set of Greggs products directly 
+So at the moment the api is currently returning a random selection from a fixed set of Greggs products directly 
 from the controller itself. We currently have a data access class and it's interface but 
 it's not plugged in (please ignore the class itself, we're pretending it hits a database),
 we're also going to pretend that the data access functionality is fully tested so we don't need 
@@ -22,7 +22,7 @@ whatever patterns you would like to use to achieve the goal. Anyhow, back to the
 user stories:
 
 ### User Story 1
-**As a** Greggs fanatic<br/>
+**As a** Greggs Fanatic<br/>
 **I want to** be able to get the latest menu of products rather than the random static products it returns now<br/>
 **So that** I get the most recently available products.
 
