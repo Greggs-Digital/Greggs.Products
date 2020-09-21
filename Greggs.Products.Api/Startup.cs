@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Greggs.Products.Api.DataAccess;
+using Greggs.Products.Api.Models;
+using Greggs.Products.Api.Respositories;
+using Greggs.Products.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +28,10 @@ namespace Greggs.Products.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IDataAccess<Product>, ProductAccess> ();
+            services.AddScoped<IDataRepository<ProductDTO>, ProductRepository>();
+            services.AddScoped<IExchangeRateService, ExchangeRateService>();
+
             services.AddControllers();
 
             services.AddSwaggerGen();

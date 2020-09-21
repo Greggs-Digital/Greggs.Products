@@ -11,6 +11,16 @@
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
+    <PackageReference Include="Moq" Version="4.14.5" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Respositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Greggs.Products.Api\Greggs.Products.Api.csproj" />
+  </ItemGroup>
 </Project>
