@@ -12,8 +12,7 @@ we're also going to pretend that the data access functionality is fully tested s
 to worry about testing those lines of functionality.
 
 We're mainly looking for the way you work and how you would approach tackling the following 
-scenarios, we don't expect a vast amount of time to be spent, as we understand everyone has a 
-busy schedule so please only spend around 30 minutes on this.
+scenarios.
 
 ## User Stories
 Our product owners have asked us to implement the following stories, we'd like you to have 
