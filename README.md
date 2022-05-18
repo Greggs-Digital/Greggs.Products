@@ -2,8 +2,6 @@
 ## Introduction
 Hello and welcome to the Greggs Products repository, thanks for finding it!
 
-The solution may require you to install the latest versions of .net, specifically netcoreapp3.1.
-
 ## The Solution
 So at the moment the api is currently returning a random selection from a fixed set of Greggs products directly 
 from the controller itself. We currently have a data access class and it's interface but 
