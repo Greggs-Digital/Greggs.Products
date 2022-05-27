@@ -1,7 +1,10 @@
+using Greggs.Products.Api.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MediatR;
+using System.Reflection;
 
 namespace Greggs.Products.Api;
 
@@ -12,6 +15,10 @@ public class Startup
         services.AddControllers();
 
         services.AddSwaggerGen();
+
+        // register any required implementation
+        services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+        services.AddRepository();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
