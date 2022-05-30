@@ -9,7 +9,7 @@ it's not plugged in (please ignore the class itself, we're pretending it hits a 
 we're also going to pretend that the data access functionality is fully tested so we don't need 
 to worry about testing those lines of functionality.
 
-We're mainly looking for the way you work and how you would approach tackling the following 
+We're mainly looking for the way you work, your code structure and how you would approach tackling the following 
 scenarios.
 
 ## User Stories
@@ -24,7 +24,9 @@ user stories:
 **So that** I get the most recently available products.
 
 **Acceptance Criteria**<br/>
-The api will return the products but it will use the data access functionality previously implemented.
+**Given** a previously implemented data access layer
+**When** I hit a specified endpoint to get a list of products
+**Then** a list or products is returned that uses the data access implementation rather than the static list it current utilises
 
 ### User Story 2
 **As a** Greggs Entrepreneur<br/>
@@ -32,5 +34,6 @@ The api will return the products but it will use the data access functionality p
 **So that** I can set up a shop in Europe as part of our expansion
 
 **Acceptance Criteria**<br/>
-The exchange rate we will use can be set as a constant variable and doesn't need to call anything external. 
-For the sake of this story, let's say the exchange rate is 1.11.
+**Given** an exchange rate of 1GBP to 1.11EUR
+**When** I hit a specified endpoint to get a list of products
+**Then** I will get the products and their price(s) returned
