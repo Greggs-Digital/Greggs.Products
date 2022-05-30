@@ -36,4 +36,4 @@ user stories:
 **Acceptance Criteria**<br/>
 **Given** an exchange rate of 1GBP to 1.11EUR
 **When** I hit a specified endpoint to get a list of products
-**Then** I will get the products and their cost(s) returned
+**Then** I will get the products and their price(s) returned
