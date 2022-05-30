@@ -24,8 +24,8 @@ user stories:
 **So that** I get the most recently available products.
 
 **Acceptance Criteria**<br/>
-**Given** a previously implemented data access layer
-**When** I hit a specified endpoint to get a list of products
+**Given** a previously implemented data access layer<br/>
+**When** I hit a specified endpoint to get a list of products<br/>
 **Then** a list or products is returned that uses the data access implementation rather than the static list it current utilises
 
 ### User Story 2
@@ -34,6 +34,6 @@ user stories:
 **So that** I can set up a shop in Europe as part of our expansion
 
 **Acceptance Criteria**<br/>
-**Given** an exchange rate of 1GBP to 1.11EUR
-**When** I hit a specified endpoint to get a list of products
+**Given** an exchange rate of 1GBP to 1.11EUR<br/>
+**When** I hit a specified endpoint to get a list of products<br/>
 **Then** I will get the products and their price(s) returned
