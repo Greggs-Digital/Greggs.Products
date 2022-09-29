@@ -1,40 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Greggs.Products.Api.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
-namespace Greggs.Products.Api.Controllers;
+﻿namespace Greggs.Products.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class ProductController : ControllerBase
 {
-    private static readonly string[] Products = new[]
-    {
-        "Sausage Roll", "Vegan Sausage Roll", "Steak Bake", "Yum Yum", "Pink Jammie"
-    };
-
     private readonly ILogger<ProductController> _logger;
+    private readonly IProductService _productService;
 
-    public ProductController(ILogger<ProductController> logger)
+    public ProductController(ILogger<ProductController> logger, IProductService productService)
     {
         _logger = logger;
+        _productService = productService;
     }
 
     [HttpGet]
-    public IEnumerable<Product> Get(int pageStart = 0, int pageSize = 5)
+    public ActionResult<IEnumerable<ProductDto>> Get(int pageStart = 0, int pageSize = 5)
     {
-        if (pageSize > Products.Length)
-            pageSize = Products.Length;
+        try
+        {
+            var products = _productService.GetLatestProducts(pageStart, pageSize);
 
-        var rng = new Random();
-        return Enumerable.Range(1, pageSize).Select(index => new Product
-            {
-                PriceInPounds = rng.Next(0, 10),
-                Name = Products[rng.Next(Products.Length)]
-            })
-            .ToArray();
+            //Convert Products from the Model type to a DTO that could be more specific and lightweight
+            var response = products.Select(BrandToDto).ToList();
+
+            return response;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            return BadRequest();
+        }
     }
+
+    private static ProductDto BrandToDto(Product product) =>
+        new()
+        {
+            CreatedDate = product.CreatedDate,
+            Name = product.Name,
+            PriceInPounds = product.PriceInPounds
+        };
 }

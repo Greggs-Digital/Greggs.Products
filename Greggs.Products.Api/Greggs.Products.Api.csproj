@@ -9,5 +9,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Greggs.DataAccess\Greggs.DataAccess.csproj" />
+    <ProjectReference Include="..\Greggs.Products.Services\Greggs.Products.Services.csproj" />
+  </ItemGroup>
+
 
 </Project>

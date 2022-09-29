@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace Greggs.Products.Api;
 
 public class Startup
@@ -12,6 +7,8 @@ public class Startup
         services.AddControllers();
 
         services.AddSwaggerGen();
+
+        services.RegisterDataAccessDependencies();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

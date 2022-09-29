@@ -1,0 +1,17 @@
+﻿global using Greggs.DataAccess;
+global using Greggs.DataAccess.Interfaces;
+global using Greggs.DataAccess.Models;
+global using Greggs.Products.Api.DependencyInjection;
+global using Greggs.Products.Api.Models;
+global using Greggs.Products.Services;
+global using Greggs.Products.Services.Interfaces;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Logging;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading.Tasks;
