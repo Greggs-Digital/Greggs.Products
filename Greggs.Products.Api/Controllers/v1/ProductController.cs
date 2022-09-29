@@ -1,7 +1,8 @@
-﻿namespace Greggs.Products.Api.Controllers;
+﻿namespace Greggs.Products.Api.Controllers.v1;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
 public class ProductController : ControllerBase
 {
     private readonly ILogger<ProductController> _logger;
@@ -14,6 +15,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
     public ActionResult<IEnumerable<ProductDto>> Get(int pageStart = 0, int pageSize = 5)
     {
         try
