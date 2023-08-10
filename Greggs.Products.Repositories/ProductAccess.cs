@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
-using Greggs.Products.Api.Models;
+using Greggs.Products.Abstractions;
+using Greggs.Products.Entities;
 
-namespace Greggs.Products.Api.DataAccess;
+namespace Greggs.Products.Repositories;
 
 /// <summary>
 /// DISCLAIMER: This is only here to help enable the purpose of this exercise, this doesn't reflect the way we work!
@@ -33,4 +32,23 @@ public class ProductAccess : IDataAccess<Product>
 
         return queryable.ToList();
     }
+
+    public IEnumerable<Product> List(int? pageStart, int? pageSize, string connectionString)
+    {
+        //pretend we have a differnt dataase.
+        var queryable = ProductDatabase.AsQueryable();
+
+        if (pageStart.HasValue)
+            queryable = queryable.Skip(pageStart.Value);
+
+        if (pageSize.HasValue)
+            queryable = queryable.Take(pageSize.Value);
+
+        return queryable.ToList();
+    }
+
+    //public IEnumerable<Product> List(int? pageStart, int? pageSize, string connectionString)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

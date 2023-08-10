@@ -6,7 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Greggs.Products.Abstractions\Greggs.Products.Abstractions.csproj" />
+    <ProjectReference Include="..\Greggs.Products.Entities\Greggs.Products.Entities.csproj" />
+    <ProjectReference Include="..\Greggs.Products.Repositories\Greggs.Products.Repositories.csproj" />
+    <ProjectReference Include="..\Greggs.Products.Services\Greggs.Products.Services.csproj" />
   </ItemGroup>
 
 

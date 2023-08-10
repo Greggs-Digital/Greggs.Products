@@ -1,7 +1,11 @@
+using Greggs.Products.Abstractions;
+using Greggs.Products.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Greggs.Products.Entities;
+using Greggs.Products.Services;
 
 namespace Greggs.Products.Api;
 
@@ -10,7 +14,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-
+        services.AddScoped<IDataAccess<Product>, ProductAccess>();
+        services.AddScoped<IProductService, ProductService>();
         services.AddSwaggerGen();
     }
 
