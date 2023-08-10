@@ -46,9 +46,4 @@ public class ProductAccess : IDataAccess<Product>
 
         return queryable.ToList();
     }
-
-    //public IEnumerable<Product> List(int? pageStart, int? pageSize, string connectionString)
-    //{
-    //    throw new NotImplementedException();
-    //}
 }
