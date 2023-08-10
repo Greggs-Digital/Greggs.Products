@@ -66,7 +66,6 @@ public class ProductsControllerTests
     {
         //Arrange
         _productServiceMock.Setup(x => x.GetProducts(0, 5, "fr")).Returns(new List<ProductDto>());
-        //_loggerMock.Setup(x => x.Log(LogLevel.Debug, $"GetProductsMultiTennent endpoint has been invoked with following paramaters:tennent:fr pageStart:0, pageSize:5",It.IsAny<Object>()));
 
         //Act
         var sut = new ProductController(_loggerMock.Object, _productServiceMock.Object);
