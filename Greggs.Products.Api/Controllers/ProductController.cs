@@ -1,5 +1,7 @@
 ﻿using System;
+using Greggs.Products.Api.Models;
 using Greggs.Products.Api.Services.Product;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -20,7 +22,12 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get(int pageStart = 0, int pageSize = 5, string currency = "GBP")
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
+    public ActionResult<GetProducts> Get(int pageStart = 0, int pageSize = 5, string currency = "GBP")
     {
         try
         {
