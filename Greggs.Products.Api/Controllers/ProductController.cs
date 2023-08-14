@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Greggs.Products.Api.Models;
+using Greggs.Products.Api.Services.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,30 +9,42 @@ namespace Greggs.Products.Api.Controllers;
 [Route("[controller]")]
 public class ProductController : ControllerBase
 {
-    private static readonly string[] Products = new[]
-    {
-        "Sausage Roll", "Vegan Sausage Roll", "Steak Bake", "Yum Yum", "Pink Jammie"
-    };
-
     private readonly ILogger<ProductController> _logger;
+    private readonly IProductService _productService;
 
-    public ProductController(ILogger<ProductController> logger)
+
+    public ProductController(ILogger<ProductController> logger, IProductService productService)
     {
         _logger = logger;
+        _productService = productService;
     }
 
     [HttpGet]
-    public IEnumerable<Product> Get(int pageStart = 0, int pageSize = 5)
+    public IActionResult Get(int pageStart = 0, int pageSize = 5, string currency = "GBP")
     {
-        if (pageSize > Products.Length)
-            pageSize = Products.Length;
+        try
+        {
+            _logger.Log(LogLevel.Debug, $"Called GET /Product/Get for params pageStart :{pageStart}, pageSize : {pageSize}, currencyCode :{currency} ");
+            if (pageStart < 0)
+                return BadRequest(Models.Constants.NOT_VALID_PAGE_START);
+            if (pageSize <= 0)
+                return BadRequest(Models.Constants.NOT_VALID_PAGE_SIZE);
 
-        var rng = new Random();
-        return Enumerable.Range(1, pageSize).Select(index => new Product
+            if (!_productService.CurrencyExists(currency))
+                return BadRequest(Models.Constants.NOT_VALID_CURRENCY);
+
+
+            var data = _productService.GetProducts(pageStart, pageSize, currency);
+            if (data == null)
             {
-                PriceInPounds = rng.Next(0, 10),
-                Name = Products[rng.Next(Products.Length)]
-            })
-            .ToArray();
+                return NoContent();
+            }
+            return Ok(data);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error occured for GET /Product/Get for params pageStart :{pageStart}, pageSize : {pageSize}, currencyCode :{currency} ");
+            throw;
+        }
     }
 }

@@ -10,4 +10,18 @@
   </ItemGroup>
 
 
+  <ItemGroup>
+    <None Remove="Controllers\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Configuration\" />
+    <None Remove="Services\Product\" />
+    <None Remove="cache\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Configuration\" />
+    <Folder Include="Services\Product\" />
+    <Folder Include="cache\" />
+  </ItemGroup>
 </Project>

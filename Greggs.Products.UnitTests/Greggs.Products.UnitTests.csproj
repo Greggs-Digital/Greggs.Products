@@ -13,6 +13,23 @@
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
+    <PackageReference Include="Moq" Version="4.20.69" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.21" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="controllers\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Configuration\" />
+    <None Remove="Services\Product\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="controllers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Configuration\" />
+    <Folder Include="Services\Product\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Greggs.Products.Api\Greggs.Products.Api.csproj" />
+  </ItemGroup>
 </Project>
