@@ -59,7 +59,7 @@ namespace Greggs.Products.Api.Services.Product
 
             if (currencyConversion == null)
             {
-                return new Models.GetProducts { Currency = "GBP", PageOffset = pageOffset, PageSize = pageSize, Products = products };
+                return new Models.GetProducts { Currency = "GBP", ProductsFetched = products.Count(), PageOffset = pageOffset, PageSize = pageSize, Products = products };
             }
             else
             {
