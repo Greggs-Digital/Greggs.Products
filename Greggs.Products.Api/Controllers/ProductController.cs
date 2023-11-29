@@ -5,7 +5,6 @@ using Greggs.Products.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Greggs.Products.Api.DataAccess;
-
 namespace Greggs.Products.Api.Controllers;
 
 [ApiController]
