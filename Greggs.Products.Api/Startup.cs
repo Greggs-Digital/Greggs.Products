@@ -12,6 +12,7 @@ public class Startup
         services.AddControllers();
 
         services.AddSwaggerGen();
+
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,5 +32,7 @@ public class Startup
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+        
     }
 }
