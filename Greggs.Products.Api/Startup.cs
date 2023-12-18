@@ -3,6 +3,7 @@ using Greggs.Products.Api.Models;
 using Greggs.Products.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -10,7 +11,17 @@ namespace Greggs.Products.Api;
 
 public class Startup
 {
+
+
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = (IConfigurationRoot)configuration;
+    }
+
+    public IConfigurationRoot Configuration { get; }
+
     public void ConfigureServices(IServiceCollection services)
+
     {
         services.AddControllers();
 
@@ -23,6 +34,11 @@ public class Startup
 
         // Providing a scoped service for currency conversion.
         services.AddScoped<ICurrencyConverterService, CurrencyConverterService>();
+
+
+        //services.Configure<CurrencyRatesConfig>(Configuration.GetSection("CurrencyRates"));
+        services.Configure<CurrencyRatesConfig>(Configuration.GetSection("CurrencyRate"));
+
 
     }
 

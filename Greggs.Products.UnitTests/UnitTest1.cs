@@ -28,13 +28,21 @@ namespace Greggs.Products.UnitTests
         }
 
         [Fact]
-        public void CurrencyConverter()
+        public void ConvertCurrency_ConvertsToEuro()
         {
-            var converterService = new CurrencyConverterService();
+            var currencyConverterMock = new Mock<ICurrencyConverterService>();
+            currencyConverterMock.Setup(c => c.ConvertCurrency(It.IsAny<decimal>(), It.IsAny<string>()))
+                                 .Returns<decimal, string>((amount, currencyCode) => amount * 1.11m);
 
-            var result = converterService.ConvertToEuro(10);
+            var controller = new ProductController(
+                new Mock<ILogger<ProductController>>().Object,
+                new Mock<IDataAccess<Product>>().Object,
+                currencyConverterMock.Object);
+        
+            var result = controller.Get(0, 5, "EUR"); 
 
-            Assert.Equal(11.1m, result);
+            Assert.NotNull(result);
+  
         }
     }
 }

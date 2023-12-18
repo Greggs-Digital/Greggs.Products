@@ -2,6 +2,6 @@
 {
     public interface ICurrencyConverterService
     {
-        decimal ConvertToEuro(decimal priceInPounds);
+        decimal ConvertCurrency(decimal priceInPounds,string currencyCode);
     }
 }

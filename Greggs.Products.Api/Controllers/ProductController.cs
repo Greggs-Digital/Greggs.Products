@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Greggs.Products.Api.DataAccess;
 using Greggs.Products.Api.Models;
 using Greggs.Products.Api.Services;
+using System.Linq;
 
 namespace Greggs.Products.Api.Controllers
 {
@@ -28,17 +29,21 @@ namespace Greggs.Products.Api.Controllers
         // GET endpoint to retrieve a list of products.
         // Defaults to returning the first 5 products.
         [HttpGet]
-        public IEnumerable<Product> Get(int pageStart = 0, int pageSize = 5)
+        public IEnumerable<Product> Get(int pageStart = 0, int pageSize = 5, string currency = "GBP")
         {
-            var products = _dataAccess.List(pageStart, pageSize);
+            var products = _dataAccess.List(pageStart, pageSize).ToList();
 
-            // Convert prices to Euros using the currency converter service.
-            foreach (var product in products)
+            // Convert prices using the currency converter service
+            products.ForEach(product =>
             {
-                product.PriceInEuros = _currencyConverterService.ConvertToEuro(product.PriceInPounds);
-            }
+                product.Price = currency != "GBP"
+                    ? _currencyConverterService.ConvertCurrency(product.Price, currency)
+                    : product.Price;
+            });
 
             return products;
         }
+
+
     }
 }
